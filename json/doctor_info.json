@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Shaun Murphy",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-Co1PdlG4_hN_T07hOZjn_i1d32FB4t7B2w&usqp=CAU",
+    "phone":"6266991361",
+    "email": "dr.shaun.murphy@gmail.com",
+    "address": "Mumbai",
+    "description": "description",
+    "rating": "4.0",
+    "rated_count": "300",
+    "experience": "4 years"
+  },
+  {
+    "name": "Sachin Tendulkar",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-Co1PdlG4_hN_T07hOZjn_i1d32FB4t7B2w&usqp=CAU",
+    "phone":"6266991362",
+    "email": "dr.sachin.tendulkar@gmail.com",
+    "address": "Mumbai",
+    "description": "description",
+    "rating": "4.0",
+    "rated_count": "300",
+    "experience": "4 years"
+  },
+  {
+    "name": "Shaun Murphy",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-Co1PdlG4_hN_T07hOZjn_i1d32FB4t7B2w&usqp=CAU",
+    "phone":"6266991361",
+    "email": "dr.shaun.murphy@gmail.com",
+    "address": "Mumbai",
+    "description": "description",
+    "rating": "4.0",
+    "rated_count": "300",
+    "experience": "4 years"
+  }
+]
