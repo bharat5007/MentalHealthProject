@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import 'AuthServices.dart';
 import 'databaseFunctions.dart';
 import 'home_screen.dart';
 
@@ -125,7 +126,8 @@ class _UserDataState extends State<UserData> {
         color: Color(0xff4D7482),
         child: MaterialButton(
           onPressed: ()async{
-            await create('users', emailController.text, nameController.text, cityController.text, emailController.text, ageController.text);
+            final uid = AuthService().inputData();
+            await create('users', uid!, nameController.text, cityController.text, emailController.text, ageController.text);
             Navigator.pushReplacement(
                 context, MaterialPageRoute(builder: (context) => Homescreen()));
           },

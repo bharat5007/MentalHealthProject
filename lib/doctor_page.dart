@@ -101,7 +101,8 @@ class _HomePageState extends State<HomePage> {
                     image: doctorInfo[index]['image'],
                     phone: doctorInfo[index]['phone'],
                     email: doctorInfo[index]['email'],
-                    address: doctorInfo[index]['addresss']
+                    address: doctorInfo[index]['address'],
+                    rating: doctorInfo[index]['rating'],
                 )
             ),
             );
@@ -123,7 +124,7 @@ class _HomePageState extends State<HomePage> {
             width: 100,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: NetworkImage(doctorInfo[index]["image"]))),
+                    image: AssetImage(doctorInfo[index]["image"]))),
           ),
           SizedBox(
             width: 5,

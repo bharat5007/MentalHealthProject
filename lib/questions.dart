@@ -1,5 +1,6 @@
 class Brain {
   int count = 0;
+  int curr_question = 0;
   final List<String> _questions = [
     'Question Display',
     'Some cats are actually allergic to humans',
@@ -10,6 +11,11 @@ class Brain {
     return _questions[count];
   }
 
+  int Get(){
+    curr_question = count;
+    return curr_question;
+  }
+
   int next() {
     if (count < _questions.length - 1) {
       return count++;
@@ -17,4 +23,5 @@ class Brain {
       return count;
     }
   }
+
 }

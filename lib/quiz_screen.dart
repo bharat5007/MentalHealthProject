@@ -1,23 +1,40 @@
+import 'package:demoji/demoji.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_signin/AuthServices.dart';
+import 'home_screen.dart';
 import 'questions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dart_date/dart_date.dart';
+import 'package:google_signin/getAnswers.dart';
 
 Brain quiz = Brain();
 
 class Tests extends StatefulWidget {
   const Tests({Key? key}) : super(key: key);
 
+
   @override
   State<Tests> createState() => _TestsState();
 }
 
 class _TestsState extends State<Tests> {
+  int lol=0;
   final _firestore = FirebaseFirestore.instance;
+  List<dynamic> l =[1];
   int count = 0;
+  int q_num = quiz.Get();
+
+  // final List<dynamic> sub_collectionId = new List();
+  List sub_collectionId = [];
+  List SubCollectionId(){
+    return sub_collectionId;
+  }
+
+  // getAnswers({ids: sub_collectionId});
   late int value;
   late String question;
+  final name = DateTime.now().format('dd-MMMM-yyyy','de_US');
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,7 +49,7 @@ class _TestsState extends State<Tests> {
                       children: <Widget>[
                         Center(
                           child: Text(
-                            'Questions',
+                            '$q_num',
                             style: TextStyle(
                                 fontSize: 40, fontFamily: 'DancingScript'),
                           ),
@@ -109,12 +126,25 @@ class _TestsState extends State<Tests> {
                               final uid = AuthService().inputData();
                               setState(() {
                                 question = quiz.getquestion();
+                                print(question);
                                 value = count;
+                                q_num = quiz.Get();
+                                l.add(value);
                                 quiz.next();
+                                sub_collectionId.add(name);
+                                lol++;
+                                if (lol >= 3) {
+                                  showAlertDialog(
+                                      context,
+                                      'Are you sure you want to delete?',
+                                      "AppName",
+                                      "Ok",
+                                      "Cancel");
+                                }
                               });
-                              await _firestore.collection('user').doc(uid).set({
-                                'question': question,
-                                'answer': value,
+                              ;
+                              await _firestore.collection(uid!).doc('01-November-2022').set({
+                                'data': l
                               });
                             },
                             child: const Text(
@@ -131,3 +161,45 @@ class _TestsState extends State<Tests> {
         ));
   }
 }
+
+
+showAlertDialog(BuildContext context, String message, String heading,
+    String buttonAcceptTitle, String buttonCancelTitle) {
+  // set up the buttons
+  Widget cancelButton = TextButton(
+    child: Text(buttonCancelTitle),
+    onPressed: () {},
+  );
+  Widget continueButton = TextButton(
+    child: Text(buttonAcceptTitle),
+    onPressed: () {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => Homescreen()));
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text(heading),
+    content: Text(message),
+    actions: [
+      cancelButton,
+      continueButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+      );
+}
+
+// class GetIds{
+//   final ids;
+//   GetIds({required this.ids});
+//   ans = ids;
+//   return ids;
+// }

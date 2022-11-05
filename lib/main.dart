@@ -32,7 +32,7 @@ class _GooglesignInState extends State<GooglesignIn> {
         theme: ThemeData(
           primarySwatch: Colors.green,
         ),
-        home: SignInScreen()
+        home: SignInScreen(),
         )
     );
   }

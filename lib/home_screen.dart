@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:demoji/demoji.dart';
 import 'package:google_signin/doctor_page.dart';
+import 'package:google_signin/doctor_page2.dart';
+import 'package:google_signin/profile_page.dart';
 import 'package:google_signin/quiz_screen.dart';
+import 'getAnswers.dart';
+import 'thoughts.dart';
+
+Thoughts feeling = Thoughts();
 
 class Homescreen extends StatefulWidget {
   const Homescreen({Key? key}) : super(key: key);
@@ -18,6 +24,8 @@ class _HomescreenState extends State<Homescreen> {
   //     fontSize = fontSize + 10;
   //   });
   // }
+
+  String a = 'How do you feel today?';
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -44,7 +52,11 @@ class _HomescreenState extends State<Homescreen> {
             ),
             GestureDetector(
               onTap: () {
-
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Profile()),
+                );
               },
               child: const Icon(
                 Icons.account_circle,
@@ -90,6 +102,7 @@ class _HomescreenState extends State<Homescreen> {
                     MaterialButton(
                         onPressed: () {
                           setState(() {
+                            a = feeling.getsad();
                             const Text(
                               Demoji.disappointed,
                               style: TextStyle(fontSize: 60),
@@ -103,6 +116,7 @@ class _HomescreenState extends State<Homescreen> {
                     MaterialButton(
                         onPressed: () {
                           setState(() {
+                            a  = feeling.getangry();
                             const Text(
                               Demoji.angry,
                               style: TextStyle(fontSize: 30,
@@ -118,6 +132,7 @@ class _HomescreenState extends State<Homescreen> {
                     MaterialButton(
                         onPressed: () {
                           setState(() {
+                            a = feeling.getcry();
                             const Text(
                               Demoji.sob,
                               style: TextStyle(fontSize: 30),
@@ -131,6 +146,7 @@ class _HomescreenState extends State<Homescreen> {
                     MaterialButton(
                         onPressed: () {
                           setState(() {
+                            a = feeling.gethappy();
                             const Text(
                               Demoji.grinning,
                               style: TextStyle(fontSize: 30),
@@ -158,8 +174,8 @@ class _HomescreenState extends State<Homescreen> {
                   height: 130,
                   width: 180,
                   color: const Color(0xFFEFEBE9),
-                  child: const Text(
-                    'Thought will be written here',
+                  child: Text(
+                    '$a',
                     style: TextStyle(fontSize: 20),
                   ),
                 ),
@@ -252,31 +268,40 @@ class _HomescreenState extends State<Homescreen> {
                       ),
                     ),
                   ), //Doctors
-                  Container(
-                    margin: const EdgeInsets.all(25),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: const Color(0xFFEFEBE9),
-                    ),
-                    child: Column(
-                      children: <Widget>[
-                        Image.asset(
-                          'Assets/Images/reports.png',
-                          height: 110,
-                          width: 120,
-                        ),
-                        Container(
-                          height: 30,
-                          width: 80,
-                          color: const Color(0xFFEFEBE9),
-                          child: const Center(
-                            child: Text(
-                              'Reports',
-                              style: TextStyle(fontSize: 20),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => GetAnswers()),
+                      );
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.all(25),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: const Color(0xFFEFEBE9),
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          Image.asset(
+                            'Assets/Images/reports.png',
+                            height: 110,
+                            width: 120,
+                          ),
+                          Container(
+                            height: 30,
+                            width: 80,
+                            color: const Color(0xFFEFEBE9),
+                            child: const Center(
+                              child: Text(
+                                'Reports',
+                                style: TextStyle(fontSize: 20),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ],
