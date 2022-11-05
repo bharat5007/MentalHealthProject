@@ -143,7 +143,7 @@ class _TestsState extends State<Tests> {
                                 }
                               });
                               ;
-                              await _firestore.collection(uid!).doc('01-November-2022').set({
+                              await _firestore.collection(uid!).doc('$name').set({
                                 'data': l
                               });
                             },
